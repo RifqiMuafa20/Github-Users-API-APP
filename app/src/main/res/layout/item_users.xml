@@ -54,7 +54,7 @@
             android:layout_marginTop="5dp"
             android:fontFamily="sans-serif"
             android:text="@string/status"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@color/colorPrimary"
             android:textSize="13sp"
             card_view:layout_constraintEnd_toEndOf="@+id/tv_item_name"
             card_view:layout_constraintStart_toStartOf="@+id/tv_item_name"

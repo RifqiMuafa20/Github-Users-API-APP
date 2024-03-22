@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,22 +7,22 @@
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" >
+    app:layout_constraintTop_toTopOf="parent">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context=".ui.profile.ProfileFragment">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="360dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="100dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -35,10 +34,10 @@
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/material_dynamic_primary10"
+                    android:background="@color/colorPrimary"
                     android:fontFamily="monospace"
                     android:gravity="center"
-                    android:text="@string/follower"
+                    android:text="@string/followers"
                     android:textColor="@color/white"
                     android:textSize="11sp" />
 
@@ -47,10 +46,10 @@
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/material_dynamic_primary10"
+                    android:background="@color/colorPrimary"
                     android:fontFamily="monospace"
                     android:gravity="center"
-                    android:text="@string/following"
+                    android:text="@string/followi"
                     android:textColor="@color/white"
                     android:textSize="11sp" />
 
@@ -59,10 +58,10 @@
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/material_dynamic_primary10"
+                    android:background="@color/colorPrimary"
                     android:fontFamily="monospace"
                     android:gravity="center"
-                    android:text="@string/repositories"
+                    android:text="@string/repositoris"
                     android:textColor="@color/white"
                     android:textSize="11sp" />
             </LinearLayout>
@@ -88,7 +87,8 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="@+id/companyImage"
                 app:layout_constraintTop_toBottomOf="@+id/companyImage"
-                app:srcCompat="@drawable/baseline_not_listed_location_24" />
+                app:srcCompat="@drawable/baseline_not_listed_location_24"
+                android:contentDescription="@string/location" />
 
             <TextView
                 android:id="@+id/userName"
@@ -205,6 +205,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:visibility="gone"
+            android:indeterminateTint="@color/colorPrimary"
             tools:visibility="visible" />
 
     </FrameLayout>
