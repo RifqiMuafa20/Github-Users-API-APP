@@ -7,9 +7,14 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.d121211063.mygithubusers.data.history.History
 import com.d121211063.mygithubusers.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        var historyList: ArrayList<History> = arrayListOf()
+    }
 
     private lateinit var binding: ActivityMainBinding
 
