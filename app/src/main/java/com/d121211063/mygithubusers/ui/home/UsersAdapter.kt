@@ -12,7 +12,6 @@ import com.d121211063.mygithubusers.data.history.History
 import com.d121211063.mygithubusers.data.response.ItemsItem
 import com.d121211063.mygithubusers.databinding.ItemUsersBinding
 import com.d121211063.mygithubusers.ui.detail.DetailUserActivity
-import com.d121211063.mygithubusers.ui.detail.SectionsPagerAdapter
 
 class UsersAdapter : ListAdapter<ItemsItem, UsersAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
@@ -32,8 +31,9 @@ class UsersAdapter : ListAdapter<ItemsItem, UsersAdapter.MyViewHolder>(DIFF_CALL
         }
     }
 
-    class MyViewHolder(private val binding: ItemUsersBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(user: ItemsItem){
+    class MyViewHolder(private val binding: ItemUsersBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(user: ItemsItem) {
             binding.tvItemName.text = user.login
             binding.userStatus.text = user.type
             Glide.with(binding.root)
@@ -47,6 +47,7 @@ class UsersAdapter : ListAdapter<ItemsItem, UsersAdapter.MyViewHolder>(DIFF_CALL
             override fun areItemsTheSame(oldItem: ItemsItem, newItem: ItemsItem): Boolean {
                 return oldItem == newItem
             }
+
             override fun areContentsTheSame(oldItem: ItemsItem, newItem: ItemsItem): Boolean {
                 return oldItem == newItem
             }

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.d121211063.mygithubusers.ui.detail.follow.FollowFragment
-import com.d121211063.mygithubusers.ui.home.HomeFragment
 
 class SectionsPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activity) {
 
@@ -16,6 +15,7 @@ class SectionsPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(a
         }
         return fragment
     }
+
     override fun getItemCount(): Int {
         return 2
     }

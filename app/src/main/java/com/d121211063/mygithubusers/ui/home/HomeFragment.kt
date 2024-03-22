@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -29,8 +29,16 @@ class HomeFragment : Fragment() {
         val layoutManager = GridLayoutManager(this.context, 2)
         binding.rvUsers.layoutManager = layoutManager
 
+        mainViewModel.isLoading.observe(viewLifecycleOwner) {
+            showLoading(it)
+        }
+
         mainViewModel.listUser.observe(viewLifecycleOwner) { listUser ->
             setRUserData(listUser)
+        }
+
+        mainViewModel.isError.observe(viewLifecycleOwner) {
+            showToastError(it)
         }
 
         searchUser()
@@ -58,5 +66,13 @@ class HomeFragment : Fragment() {
                 }
             })
         }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showToastError(isError: Boolean) {
+        if (isError) Toast.makeText(this.context, "Terjadi kesalahan!! Mohon Bersabar", Toast.LENGTH_SHORT).show()
     }
 }

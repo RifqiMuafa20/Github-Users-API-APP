@@ -28,8 +28,9 @@ class HistoryAdapter : ListAdapter<History, HistoryAdapter.MyViewHolder>(DIFF_CA
         }
     }
 
-    class MyViewHolder(private val binding: ItemUsersBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(history: History){
+    class MyViewHolder(private val binding: ItemUsersBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(history: History) {
             binding.tvItemName.text = history.username
             binding.userStatus.text = history.status
             Glide.with(binding.root)
@@ -43,6 +44,7 @@ class HistoryAdapter : ListAdapter<History, HistoryAdapter.MyViewHolder>(DIFF_CA
             override fun areItemsTheSame(oldItem: History, newItem: History): Boolean {
                 return oldItem == newItem
             }
+
             override fun areContentsTheSame(oldItem: History, newItem: History): Boolean {
                 return oldItem == newItem
             }

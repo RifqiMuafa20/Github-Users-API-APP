@@ -4,12 +4,15 @@
     <string name="title_history">History</string>
     <string name="title_profile">Profile</string>
     <string name="username_github">username github</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tab_text_1">Followers</string>
     <string name="tab_text_2">Following</string>
     <string name="following">%1$d Following</string>
     <string name="follower">%1$d Follower</string>
     <string name="status">status</string>
-    <string name="searchbar_hint">Masukkan kata</string>
-    <string name="search_bar_text">pencarian</string>
+    <string name="bio">Bio</string>
+    <string name="repositories">%1$d Repositories</string>
+    <string name="username">Username</string>
+    <string name="location">Location</string>
+    <string name="company">Company</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
 </resources>

@@ -14,6 +14,9 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+        buildConfigField("String", "API_KEY", "\"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\"")
+        buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -34,6 +37,7 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        buildConfig = true
         viewBinding = true
         dataBinding = true
     }

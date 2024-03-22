@@ -1,7 +1,6 @@
 package com.d121211063.mygithubusers.data.retrofit
 
 import com.d121211063.mygithubusers.data.response.DetailUserResponse
-import com.d121211063.mygithubusers.data.response.UserFollowersResponse
 import com.d121211063.mygithubusers.data.response.UserFollowersResponseItem
 import com.d121211063.mygithubusers.data.response.UserResponse
 import retrofit2.Call

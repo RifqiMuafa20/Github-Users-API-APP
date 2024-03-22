@@ -1,16 +1,16 @@
 package com.d121211063.mygithubusers.ui.detail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.d121211063.mygithubusers.R
 import com.d121211063.mygithubusers.data.response.DetailUserResponse
-import com.d121211063.mygithubusers.data.response.ItemsItem
 import com.d121211063.mygithubusers.databinding.ActivityDetailUserBinding
-import com.d121211063.mygithubusers.ui.home.UsersAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -37,8 +37,16 @@ class DetailUserActivity : AppCompatActivity() {
 
         username = intent.getStringExtra(EXTRA_USER).toString()
 
+        mainViewModel.isLoading.observe(this) {
+            showLoading(it)
+        }
+
         mainViewModel.detailUser.observe(this) { detailUser ->
             getUserDetail(detailUser)
+        }
+
+        mainViewModel.isError.observe(this) {
+            showToastError(it)
         }
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
@@ -68,5 +76,13 @@ class DetailUserActivity : AppCompatActivity() {
             follower.text = getString(R.string.follower, nfollower)
             following.text = getString(R.string.following, nfollowing)
         }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showToastError(isError: Boolean) {
+        if (isError) Toast.makeText(this, "Terjadi kesalahan!! Mohon Bersabar", Toast.LENGTH_SHORT).show()
     }
 }

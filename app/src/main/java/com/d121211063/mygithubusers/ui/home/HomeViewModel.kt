@@ -16,7 +16,13 @@ class HomeViewModel : ViewModel() {
     private val _listUser = MutableLiveData<List<ItemsItem>>()
     val listUser: LiveData<List<ItemsItem>> = _listUser
 
-    companion object{
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
+    private val _isError = MutableLiveData<Boolean>()
+    val isError: LiveData<Boolean> = _isError
+
+    companion object {
         private const val TAG = "MainViewModel"
     }
 
@@ -24,21 +30,26 @@ class HomeViewModel : ViewModel() {
         findUser("rifqi")
     }
 
-    fun findUser(user : String) {
+    fun findUser(user: String) {
+        _isLoading.value = true
         val client = ApiConfig.getApiService().getUser(user)
         client.enqueue(object : Callback<UserResponse> {
             override fun onResponse(
                 call: Call<UserResponse>,
                 response: Response<UserResponse>
             ) {
+                _isLoading.value = false
                 if (response.isSuccessful) {
                     _listUser.value = response.body()?.items
                 } else {
+                    _isError.value = true
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                _isLoading.value = false
+                _isError.value = true
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })

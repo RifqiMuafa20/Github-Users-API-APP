@@ -2,17 +2,19 @@ package com.d121211063.mygithubusers.data.retrofit
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
+import com.d121211063.mygithubusers.BuildConfig
 class ApiConfig {
-    companion object{
+    companion object {
+        private const val baseUrl = BuildConfig.BASE_URL
+        private const val apiKey = BuildConfig.API_KEY
+
         fun getApiService(): ApiService {
             val authInterceptor = Interceptor { chain ->
                 val req = chain.request()
                 val requestHeaders = req.newBuilder()
-                    .addHeader("Authorization", "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")
+                    .addHeader("Authorization", apiKey)
                     .build()
                 chain.proceed(requestHeaders)
             }
@@ -21,7 +23,7 @@ class ApiConfig {
                 .addInterceptor(authInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
+                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

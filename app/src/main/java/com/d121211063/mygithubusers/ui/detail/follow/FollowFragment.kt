@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.d121211063.mygithubusers.data.response.UserFollowersResponseItem
@@ -31,7 +32,11 @@ class FollowFragment : Fragment() {
             position = it.getInt(ARG_POSITION)
         }
 
-        if (position == 1){
+        followViewModel.isLoading.observe(viewLifecycleOwner) {
+            showLoading(it)
+        }
+
+        if (position == 1) {
             followViewModel.listFollowers.observe(viewLifecycleOwner) { listFollow ->
                 setFollowData(listFollow)
             }
@@ -41,6 +46,10 @@ class FollowFragment : Fragment() {
             }
         }
 
+        followViewModel.isError.observe(viewLifecycleOwner) {
+            showToastError(it)
+        }
+
         return root
     }
 
@@ -48,6 +57,14 @@ class FollowFragment : Fragment() {
         val adapter = FollowAdapter()
         adapter.submitList(listFollow)
         binding.rvFollow.adapter = adapter
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showToastError(isError: Boolean) {
+        if (isError) Toast.makeText(this.context, "Terjadi kesalahan!! Mohon Bersabar", Toast.LENGTH_SHORT).show()
     }
 
     companion object {

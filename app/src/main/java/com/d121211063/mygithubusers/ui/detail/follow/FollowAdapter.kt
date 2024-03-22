@@ -18,7 +18,8 @@ class FollowAdapter : ListAdapter<UserFollowersResponseItem, FollowAdapter.MyVie
 ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = ItemFollowUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemFollowUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 
@@ -33,9 +34,10 @@ class FollowAdapter : ListAdapter<UserFollowersResponseItem, FollowAdapter.MyVie
         }
     }
 
-    class MyViewHolder(private val binding: ItemFollowUserBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(user: UserFollowersResponseItem){
-            binding.userName.text= user.login
+    class MyViewHolder(private val binding: ItemFollowUserBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(user: UserFollowersResponseItem) {
+            binding.userName.text = user.login
             binding.userStatus.text = user.type
             Glide.with(binding.root)
                 .load(user.avatarUrl)
@@ -45,10 +47,17 @@ class FollowAdapter : ListAdapter<UserFollowersResponseItem, FollowAdapter.MyVie
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UserFollowersResponseItem>() {
-            override fun areItemsTheSame(oldItem: UserFollowersResponseItem, newItem: UserFollowersResponseItem): Boolean {
+            override fun areItemsTheSame(
+                oldItem: UserFollowersResponseItem,
+                newItem: UserFollowersResponseItem
+            ): Boolean {
                 return oldItem == newItem
             }
-            override fun areContentsTheSame(oldItem: UserFollowersResponseItem, newItem: UserFollowersResponseItem): Boolean {
+
+            override fun areContentsTheSame(
+                oldItem: UserFollowersResponseItem,
+                newItem: UserFollowersResponseItem
+            ): Boolean {
                 return oldItem == newItem
             }
         }
