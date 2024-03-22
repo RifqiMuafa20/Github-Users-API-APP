@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
             search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
                     if (query.isEmpty()) return true
-                    HomeViewModel.username = query
+                    mainViewModel.findUser(query)
                     return true
                 }
 

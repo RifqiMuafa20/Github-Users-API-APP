@@ -17,19 +17,14 @@ class HomeViewModel : ViewModel() {
     val listUser: LiveData<List<ItemsItem>> = _listUser
 
     companion object{
-        var username: String? = null
         private const val TAG = "MainViewModel"
     }
 
     init {
-        if (username != null) {
-            findUser(username!!)
-        } else {
-            findUser("rifqi")
-        }
+        findUser("rifqi")
     }
 
-    private fun findUser(user : String) {
+    fun findUser(user : String) {
         val client = ApiConfig.getApiService().getUser(user)
         client.enqueue(object : Callback<UserResponse> {
             override fun onResponse(
