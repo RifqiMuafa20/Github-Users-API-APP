@@ -6,8 +6,11 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.d121211063.mygithubusers.data.local.entity.UserFavorite
+import com.d121211063.mygithubusers.data.local.entity.UserVisited
 import com.d121211063.mygithubusers.data.local.room.UserFavoriteDao
 import com.d121211063.mygithubusers.data.local.room.UserFavoriteRoomDatabase
+import com.d121211063.mygithubusers.data.local.room.UserVisitedDao
+import com.d121211063.mygithubusers.data.local.room.UserVisitedRoomDatabase
 import com.d121211063.mygithubusers.data.remote.response.DetailUserResponse
 import com.d121211063.mygithubusers.data.remote.retrofit.ApiConfig
 import kotlinx.coroutines.CoroutineScope
@@ -30,8 +33,12 @@ class DetailUserViewModel(application: Application) : AndroidViewModel(applicati
     private var userFavoriteDao: UserFavoriteDao?
     private var userFavoriteDb: UserFavoriteRoomDatabase? = UserFavoriteRoomDatabase.getDatabase(application)
 
+    private var userVisitedDao: UserVisitedDao?
+    private var userVisitedDb: UserVisitedRoomDatabase? = UserVisitedRoomDatabase.getDatabase(application)
+
     init {
         userFavoriteDao = userFavoriteDb?.userDao()
+        userVisitedDao = userVisitedDb?.userDao()
         getDetailUser(DetailUserActivity.username)
     }
 
@@ -74,6 +81,15 @@ class DetailUserViewModel(application: Application) : AndroidViewModel(applicati
     fun removeFavorite(login: String) {
         CoroutineScope(Dispatchers.IO).launch {
             userFavoriteDao?.removeFavorite(login)
+        }
+    }
+
+    fun addVisited(username: String, avatarUrl: String, type: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val user = UserVisited(
+                username, avatarUrl, type
+            )
+            userVisitedDao?.addVisited(user)
         }
     }
 

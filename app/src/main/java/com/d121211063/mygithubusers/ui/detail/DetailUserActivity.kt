@@ -60,6 +60,8 @@ class DetailUserActivity : AppCompatActivity() {
             showToastError(it)
         }
 
+        mainViewModel.addVisited(username, url, type)
+
         var checked = false
         CoroutineScope(Dispatchers.IO).launch {
             val count = mainViewModel.checkUser(username)
@@ -98,7 +100,6 @@ class DetailUserActivity : AppCompatActivity() {
     }
 
     private fun getUserDetail(detailUser: DetailUserResponse) {
-
         with(binding) {
             Glide.with(this@DetailUserActivity)
                 .load(detailUser.avatarUrl)

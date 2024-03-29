@@ -2,13 +2,18 @@ package com.d121211063.mygithubusers.ui.history
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.d121211063.mygithubusers.data.local.history.History
+import com.d121211063.mygithubusers.R
+import com.d121211063.mygithubusers.data.local.entity.UserVisited
 import com.d121211063.mygithubusers.databinding.FragmentHistoryBinding
 
 class HistoryFragment : Fragment() {
@@ -25,35 +30,54 @@ class HistoryFragment : Fragment() {
         _binding = FragmentHistoryBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        setHasOptionsMenu(true)
+
         val layoutManager = GridLayoutManager(this.context, 2)
         binding.rvUsers.layoutManager = layoutManager
 
-        historyViewModel.isLoading.observe(viewLifecycleOwner) {
-            showLoading(it)
-        }
-
-        historyViewModel.listHistory.observe(viewLifecycleOwner) { listHistory ->
-            setRHistoryData(listHistory)
-        }
-
-        historyViewModel.isError.observe(viewLifecycleOwner) {
-            showToastError(it)
+        historyViewModel.getVisitedUsers()?.observe(viewLifecycleOwner) { listUser ->
+            setRHistoryData(listUser)
         }
 
         return root
     }
 
-    private fun setRHistoryData(listHistory: List<History>) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.delete_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_delete -> {
+                showConfirmationDialog()
+                true
+            } else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun showConfirmationDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Konfirmasi")
+        builder.setMessage("Apakah Anda yakin ingin menghapus data?")
+        builder.setPositiveButton("Ya") { dialog, which ->
+            historyViewModel.deleteAllVisited()
+        }
+        builder.setNegativeButton("Tidak") { dialog, which ->
+            dialog.dismiss()
+        }
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    private fun setRHistoryData(listUserVisited: List<UserVisited>) {
         val adapter = HistoryAdapter()
-        adapter.submitList(listHistory)
+        adapter.submitList(listUserVisited)
         binding.rvUsers.adapter = adapter
     }
 
-    private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-    }
-
-    private fun showToastError(isError: Boolean) {
-        if (isError) Toast.makeText(this.context, "Terjadi kesalahan!! Mohon Bersabar", Toast.LENGTH_SHORT).show()
+    companion object {
+        const val RESULT_DELETE = 301
+        const val ALERT_DIALOG_DELETE = 20
     }
 }

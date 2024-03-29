@@ -12,12 +12,12 @@ interface UserFavoriteDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addFavorite(user: UserFavorite)
 
-    @Query("SELECT * FROM user")
+    @Query("SELECT * FROM user_favorited")
     fun getFavoritedUser(): LiveData<List<UserFavorite>>
 
-    @Query("SELECT count(*) FROM user WHERE user.login = :login")
+    @Query("SELECT count(*) FROM user_favorited WHERE user_favorited.login = :login")
     fun checkUser(login: String) : Int
 
-    @Query("DELETE FROM user WHERE user.login = :login")
+    @Query("DELETE FROM user_favorited WHERE user_favorited.login = :login")
     fun removeFavorite(login: String)
 }

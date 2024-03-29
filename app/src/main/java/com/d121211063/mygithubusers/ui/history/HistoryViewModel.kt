@@ -1,35 +1,33 @@
 package com.d121211063.mygithubusers.ui.history
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.d121211063.mygithubusers.MainActivity
-import com.d121211063.mygithubusers.data.local.history.History
+import com.d121211063.mygithubusers.data.local.entity.UserVisited
+import com.d121211063.mygithubusers.data.local.room.UserVisitedDao
+import com.d121211063.mygithubusers.data.local.room.UserVisitedRoomDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class HistoryViewModel : ViewModel() {
-
-    private val _listHistory = MutableLiveData<List<History>>()
-    val listHistory: LiveData<List<History>> = _listHistory
-
-    private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading: LiveData<Boolean> = _isLoading
-
-    private val _isError = MutableLiveData<Boolean>()
-    val isError: LiveData<Boolean> = _isError
+class HistoryViewModel(application: Application) : AndroidViewModel(application) {
+    private var userVisitedDao: UserVisitedDao? = null
+    private var userVisitedDb: UserVisitedRoomDatabase? = UserVisitedRoomDatabase.getDatabase(application)
 
     init {
-        findHistory()
+        userVisitedDao = userVisitedDb?.userDao()
     }
 
-    fun findHistory() {
-        _isLoading.value = true
-        _listHistory.value = MainActivity.historyList
+    fun getVisitedUsers(): LiveData<List<UserVisited>>? {
+        return userVisitedDao?.getVisitedUser()
+    }
 
-        if (_listHistory.value == null) {
-            _isError.value = true
-        } else {
-            _isError.value = false
-            _isLoading.value = false
+    fun deleteAllVisited() {
+        CoroutineScope(Dispatchers.IO).launch {
+            userVisitedDao?.deleteAll()
         }
     }
 }

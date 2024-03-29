@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.d121211063.mygithubusers.MainActivity
-import com.d121211063.mygithubusers.data.local.history.History
+import com.d121211063.mygithubusers.data.local.entity.UserVisited
 import com.d121211063.mygithubusers.data.remote.response.UserFollowersResponseItem
 import com.d121211063.mygithubusers.databinding.ItemFollowUserBinding
 import com.d121211063.mygithubusers.ui.detail.DetailUserActivity
@@ -27,7 +27,6 @@ class FollowAdapter : ListAdapter<UserFollowersResponseItem, FollowAdapter.MyVie
         val user = getItem(position)
         holder.bind(user)
         holder.itemView.setOnClickListener {
-            MainActivity.historyList.add(History(user.login, user.type, user.avatarUrl))
             val intent = Intent(it.context, DetailUserActivity::class.java)
             intent.putExtra(DetailUserActivity.EXTRA_USER, user?.login)
             intent.putExtra(DetailUserActivity.EXTRA_AVATAR, user?.avatarUrl)
