@@ -1,20 +1,8 @@
-package com.d121211063.mygithubusers.data.response
+package com.d121211063.mygithubusers.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class UserResponse(
-
-    @field:SerializedName("total_count")
-    val totalCount: Int,
-
-    @field:SerializedName("incomplete_results")
-    val incompleteResults: Boolean,
-
-    @field:SerializedName("items")
-    val items: List<ItemsItem>
-)
-
-data class ItemsItem(
+data class UserFollowersResponseItem(
 
     @field:SerializedName("gists_url")
     val gistsUrl: String,
@@ -42,9 +30,6 @@ data class ItemsItem(
 
     @field:SerializedName("subscriptions_url")
     val subscriptionsUrl: String,
-
-    @field:SerializedName("score")
-    val score: Int,
 
     @field:SerializedName("received_events_url")
     val receivedEventsUrl: String,

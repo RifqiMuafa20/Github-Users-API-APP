@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.d121211063.mygithubusers.data.history.History
+import com.d121211063.mygithubusers.data.local.history.History
 import com.d121211063.mygithubusers.databinding.FragmentHistoryBinding
 
 class HistoryFragment : Fragment() {

@@ -9,21 +9,30 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.d121211063.mygithubusers.R
-import com.d121211063.mygithubusers.data.response.DetailUserResponse
+import com.d121211063.mygithubusers.data.remote.response.DetailUserResponse
 import com.d121211063.mygithubusers.databinding.ActivityDetailUserBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class DetailUserActivity : AppCompatActivity() {
     companion object {
+        var EXTRA_AVATAR = "extra_avatar"
+        var EXTRA_TYPE = "extra_type"
+        var EXTRA_USER = "extra_user"
+
+        var username: String = ""
+        var url: String = ""
+        var type: String = ""
+
         @StringRes
         private val TAB_TITLES = intArrayOf(
             R.string.tab_text_1,
             R.string.tab_text_2
         )
-
-        var EXTRA_USER = "extra_user"
-        var username: String = ""
     }
 
     private lateinit var _binding: ActivityDetailUserBinding
@@ -36,6 +45,8 @@ class DetailUserActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         username = intent.getStringExtra(EXTRA_USER).toString()
+        url = intent.getStringExtra(EXTRA_AVATAR).toString()
+        type = intent.getStringExtra(EXTRA_TYPE).toString()
 
         mainViewModel.isLoading.observe(this) {
             showLoading(it)
@@ -49,6 +60,33 @@ class DetailUserActivity : AppCompatActivity() {
             showToastError(it)
         }
 
+        var checked = false
+        CoroutineScope(Dispatchers.IO).launch {
+            val count = mainViewModel.checkUser(username)
+            withContext(Dispatchers.Main) {
+                if (count != null) {
+                    if (count > 0) {
+                        binding.ivFavorite.setImageResource(R.drawable.baseline_favorite_24)
+                        checked = true
+                    } else {
+                        binding.ivFavorite.setImageResource(R.drawable.baseline_favorite_border_24)
+                        checked = false
+                    }
+                }
+            }
+        }
+
+        binding.ivFavorite.setOnClickListener {
+            checked = !checked
+            if (checked) {
+                mainViewModel.addFavorite(username, url, type)
+                binding.ivFavorite.setImageResource(R.drawable.baseline_favorite_24)
+            } else {
+                mainViewModel.removeFavorite(username)
+                binding.ivFavorite.setImageResource(R.drawable.baseline_favorite_border_24)
+            }
+        }
+
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
         val viewPager: ViewPager2 = findViewById(R.id.view_pager)
         viewPager.adapter = sectionsPagerAdapter
@@ -60,6 +98,7 @@ class DetailUserActivity : AppCompatActivity() {
     }
 
     private fun getUserDetail(detailUser: DetailUserResponse) {
+
         with(binding) {
             Glide.with(this@DetailUserActivity)
                 .load(detailUser.avatarUrl)

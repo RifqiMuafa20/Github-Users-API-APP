@@ -1,4 +1,4 @@
-package com.d121211063.mygithubusers.ui.history
+package com.d121211063.mygithubusers.ui.favorite
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.d121211063.mygithubusers.data.local.history.History
+import com.d121211063.mygithubusers.data.local.entity.UserFavorite
 import com.d121211063.mygithubusers.databinding.ItemUsersBinding
 import com.d121211063.mygithubusers.ui.detail.DetailUserActivity
 
-class HistoryAdapter : ListAdapter<History, HistoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class FavoriteAdapter : ListAdapter<UserFavorite, FavoriteAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemUsersBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -19,35 +19,34 @@ class HistoryAdapter : ListAdapter<History, HistoryAdapter.MyViewHolder>(DIFF_CA
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val history = getItem(position)
-        holder.bind(history)
+        val user = getItem(position)
+        holder.bind(user)
         holder.itemView.setOnClickListener {
             val intent = Intent(it.context, DetailUserActivity::class.java)
-            intent.putExtra(DetailUserActivity.EXTRA_USER, history.username)
-            intent.putExtra(DetailUserActivity.EXTRA_AVATAR, history.image)
-            intent.putExtra(DetailUserActivity.EXTRA_TYPE, history.status)
+            intent.putExtra(DetailUserActivity.EXTRA_USER, user.login)
+            intent.putExtra(DetailUserActivity.EXTRA_AVATAR, user.avatar_url)
+            intent.putExtra(DetailUserActivity.EXTRA_TYPE, user.type)
             it.context.startActivity(intent)
         }
     }
 
-    class MyViewHolder(private val binding: ItemUsersBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(history: History) {
-            binding.tvItemName.text = history.username
-            binding.userStatus.text = history.status
+    class MyViewHolder(private val binding: ItemUsersBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(user: UserFavorite) {
+            binding.tvItemName.text = user.login
+            binding.userStatus.text = user.type
             Glide.with(binding.root)
-                .load(history.image)
+                .load(user.avatar_url)
                 .into(binding.imgItemPhoto)
         }
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<History>() {
-            override fun areItemsTheSame(oldItem: History, newItem: History): Boolean {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UserFavorite>() {
+            override fun areItemsTheSame(oldItem: UserFavorite, newItem: UserFavorite): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: History, newItem: History): Boolean {
+            override fun areContentsTheSame(oldItem: UserFavorite, newItem: UserFavorite): Boolean {
                 return oldItem == newItem
             }
         }

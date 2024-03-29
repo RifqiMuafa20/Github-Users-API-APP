@@ -1,4 +1,4 @@
-package com.d121211063.mygithubusers.data.retrofit
+package com.d121211063.mygithubusers.data.remote.retrofit
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

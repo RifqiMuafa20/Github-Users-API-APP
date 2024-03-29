@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.d121211063.mygithubusers.data.response.UserFollowersResponseItem
+import com.d121211063.mygithubusers.data.remote.response.UserFollowersResponseItem
 import com.d121211063.mygithubusers.databinding.FragmentFollowsBinding
 
 class FollowFragment : Fragment() {

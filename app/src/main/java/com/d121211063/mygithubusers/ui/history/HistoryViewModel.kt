@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.d121211063.mygithubusers.MainActivity
-import com.d121211063.mygithubusers.data.history.History
+import com.d121211063.mygithubusers.data.local.history.History
 
 class HistoryViewModel : ViewModel() {
 

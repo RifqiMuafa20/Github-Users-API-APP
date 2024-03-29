@@ -1,4 +1,4 @@
-package com.d121211063.mygithubusers.data.response
+package com.d121211063.mygithubusers.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 

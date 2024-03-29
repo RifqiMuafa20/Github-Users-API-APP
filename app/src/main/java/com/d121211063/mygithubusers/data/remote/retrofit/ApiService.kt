@@ -1,8 +1,8 @@
-package com.d121211063.mygithubusers.data.retrofit
+package com.d121211063.mygithubusers.data.remote.retrofit
 
-import com.d121211063.mygithubusers.data.response.DetailUserResponse
-import com.d121211063.mygithubusers.data.response.UserFollowersResponseItem
-import com.d121211063.mygithubusers.data.response.UserResponse
+import com.d121211063.mygithubusers.data.remote.response.DetailUserResponse
+import com.d121211063.mygithubusers.data.remote.response.UserFollowersResponseItem
+import com.d121211063.mygithubusers.data.remote.response.UserResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

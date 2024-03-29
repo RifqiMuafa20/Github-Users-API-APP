@@ -9,7 +9,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.d121211063.mygithubusers.data.response.ItemsItem
+import com.d121211063.mygithubusers.data.remote.response.ItemsItem
 import com.d121211063.mygithubusers.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {

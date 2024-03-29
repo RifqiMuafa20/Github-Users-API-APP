@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.d121211063.mygithubusers.R
-import com.d121211063.mygithubusers.data.response.DetailUserResponse
+import com.d121211063.mygithubusers.data.remote.response.DetailUserResponse
 import com.d121211063.mygithubusers.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {

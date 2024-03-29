@@ -4,9 +4,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.d121211063.mygithubusers.data.response.ItemsItem
-import com.d121211063.mygithubusers.data.response.UserResponse
-import com.d121211063.mygithubusers.data.retrofit.ApiConfig
+import com.d121211063.mygithubusers.data.remote.response.ItemsItem
+import com.d121211063.mygithubusers.data.remote.response.UserResponse
+import com.d121211063.mygithubusers.data.remote.retrofit.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

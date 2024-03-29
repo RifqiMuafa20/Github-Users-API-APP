@@ -1,16 +1,23 @@
 package com.d121211063.mygithubusers.ui.detail
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.d121211063.mygithubusers.data.response.DetailUserResponse
-import com.d121211063.mygithubusers.data.retrofit.ApiConfig
+import com.d121211063.mygithubusers.data.local.entity.UserFavorite
+import com.d121211063.mygithubusers.data.local.room.UserFavoriteDao
+import com.d121211063.mygithubusers.data.local.room.UserFavoriteRoomDatabase
+import com.d121211063.mygithubusers.data.remote.response.DetailUserResponse
+import com.d121211063.mygithubusers.data.remote.retrofit.ApiConfig
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailUserViewModel : ViewModel() {
+class DetailUserViewModel(application: Application) : AndroidViewModel(application) {
     private val _detailUser = MutableLiveData<DetailUserResponse>()
     val detailUser: LiveData<DetailUserResponse> = _detailUser
 
@@ -20,11 +27,11 @@ class DetailUserViewModel : ViewModel() {
     private val _isError = MutableLiveData<Boolean>()
     val isError: LiveData<Boolean> = _isError
 
-    companion object {
-        private const val TAG = "DetailUserViewModel"
-    }
+    private var userFavoriteDao: UserFavoriteDao?
+    private var userFavoriteDb: UserFavoriteRoomDatabase? = UserFavoriteRoomDatabase.getDatabase(application)
 
     init {
+        userFavoriteDao = userFavoriteDb?.userDao()
         getDetailUser(DetailUserActivity.username)
     }
 
@@ -51,5 +58,26 @@ class DetailUserViewModel : ViewModel() {
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })
+    }
+
+    fun addFavorite(username: String, avatarUrl: String, type: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val user = UserFavorite(
+                username, avatarUrl, type
+            )
+            userFavoriteDao?.addFavorite(user)
+        }
+    }
+
+    fun checkUser(login: String) = userFavoriteDao?.checkUser(login)
+
+    fun removeFavorite(login: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            userFavoriteDao?.removeFavorite(login)
+        }
+    }
+
+    companion object {
+        private const val TAG = "DetailUserViewModel"
     }
 }
