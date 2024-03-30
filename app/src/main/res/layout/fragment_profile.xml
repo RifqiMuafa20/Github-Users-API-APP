@@ -34,11 +34,10 @@
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/grey"
                     android:fontFamily="monospace"
                     android:gravity="center"
                     android:text="@string/followers"
-                    android:textColor="@color/white"
                     android:textSize="11sp" />
 
                 <TextView
@@ -46,11 +45,10 @@
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/grey"
                     android:fontFamily="monospace"
                     android:gravity="center"
                     android:text="@string/followi"
-                    android:textColor="@color/white"
                     android:textSize="11sp" />
 
                 <TextView
@@ -58,11 +56,10 @@
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/grey"
                     android:fontFamily="monospace"
                     android:gravity="center"
                     android:text="@string/repositoris"
-                    android:textColor="@color/white"
                     android:textSize="11sp" />
             </LinearLayout>
 
@@ -87,7 +84,7 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="@+id/companyImage"
                 app:layout_constraintTop_toBottomOf="@+id/companyImage"
-                app:srcCompat="@drawable/baseline_not_listed_location_24"
+                app:srcCompat="@drawable/baseline_home_24"
                 android:contentDescription="@string/location" />
 
             <TextView
@@ -100,7 +97,6 @@
                 android:fontFamily="sans-serif-medium"
                 android:maxLines="1"
                 android:text="@string/username"
-                android:textColor="@color/colorPrimary"
                 android:textSize="12sp"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -119,7 +115,6 @@
                 android:fontFamily="sans-serif-medium"
                 android:maxLines="1"
                 android:text="@string/bio"
-                android:textColor="@color/colorPrimary"
                 android:textSize="12sp"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -137,7 +132,6 @@
                 android:fontFamily="sans-serif-black"
                 android:maxLines="1"
                 android:text="@string/location"
-                android:textColor="@color/black"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="@+id/locationImage"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -155,7 +149,6 @@
                 android:fontFamily="sans-serif-black"
                 android:maxLines="1"
                 android:text="@string/company"
-                android:textColor="@color/black"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="@+id/companyImage"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -188,7 +181,6 @@
                 android:fontFamily="sans-serif-medium"
                 android:maxLines="1"
                 android:text="@string/nama_lengkap"
-                android:textColor="@color/black"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
