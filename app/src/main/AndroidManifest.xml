@@ -15,6 +15,9 @@
         android:theme="@style/Theme.MyGithubUsers"
         tools:targetApi="31">
         <activity
+            android:name=".ui.dark_mode.DarkModeActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.detail.DetailUserActivity"
             android:exported="false" />
         <activity
