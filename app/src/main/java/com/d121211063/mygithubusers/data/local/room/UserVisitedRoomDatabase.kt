@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.d121211063.mygithubusers.data.local.entity.UserVisited
 
 @Database(entities = [UserVisited::class], version = 1, exportSchema = false)
-abstract class UserVisitedRoomDatabase: RoomDatabase() {
+abstract class UserVisitedRoomDatabase : RoomDatabase() {
     abstract fun userDao(): UserVisitedDao
 
     companion object {

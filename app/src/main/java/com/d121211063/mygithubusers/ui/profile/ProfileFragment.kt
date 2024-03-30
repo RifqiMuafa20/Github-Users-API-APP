@@ -68,6 +68,10 @@ class ProfileFragment : Fragment() {
     }
 
     private fun showToastError(isError: Boolean) {
-        if (isError) Toast.makeText(this.context, "Terjadi kesalahan!! Mohon Bersabar", Toast.LENGTH_SHORT).show()
+        if (isError) Toast.makeText(
+            this.context,
+            "Terjadi kesalahan!! Mohon Bersabar",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }

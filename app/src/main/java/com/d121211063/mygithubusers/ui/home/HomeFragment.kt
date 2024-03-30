@@ -56,7 +56,8 @@ class HomeFragment : Fragment() {
         }
 
         val pref = SettingPreferences.getInstance(requireActivity().application.dataStore)
-        val themeViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(SettingViewModel::class.java)
+        val themeViewModel =
+            ViewModelProvider(this, ViewModelFactory(pref)).get(SettingViewModel::class.java)
 
         themeViewModel.getThemeSettings().observe(viewLifecycleOwner) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {
@@ -82,7 +83,9 @@ class HomeFragment : Fragment() {
                 val intent = Intent(this.context, DarkModeActivity::class.java)
                 startActivity(intent)
                 true
-            } else -> super.onOptionsItemSelected(item)
+            }
+
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -113,6 +116,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun showToastError(isError: Boolean) {
-        if (isError) Toast.makeText(this.context, "Terjadi kesalahan!! Mohon Bersabar", Toast.LENGTH_SHORT).show()
+        if (isError) Toast.makeText(
+            this.context,
+            "Terjadi kesalahan!! Mohon Bersabar",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }

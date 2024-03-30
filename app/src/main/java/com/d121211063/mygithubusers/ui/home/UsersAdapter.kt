@@ -1,14 +1,12 @@
 package com.d121211063.mygithubusers.ui.home
 
 import android.content.Intent
-import androidx.recyclerview.widget.ListAdapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.d121211063.mygithubusers.MainActivity
-import com.d121211063.mygithubusers.data.local.entity.UserVisited
 import com.d121211063.mygithubusers.data.remote.response.ItemsItem
 import com.d121211063.mygithubusers.databinding.ItemUsersBinding
 import com.d121211063.mygithubusers.ui.detail.DetailUserActivity

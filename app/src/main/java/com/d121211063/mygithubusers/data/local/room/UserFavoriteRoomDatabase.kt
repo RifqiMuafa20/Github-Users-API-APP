@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.d121211063.mygithubusers.data.local.entity.UserFavorite
 
 @Database(entities = [UserFavorite::class], version = 1, exportSchema = false)
-abstract class UserFavoriteRoomDatabase: RoomDatabase() {
+abstract class UserFavoriteRoomDatabase : RoomDatabase() {
     abstract fun userDao(): UserFavoriteDao
 
     companion object {

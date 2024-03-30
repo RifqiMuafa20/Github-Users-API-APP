@@ -31,10 +31,12 @@ class DetailUserViewModel(application: Application) : AndroidViewModel(applicati
     val isError: LiveData<Boolean> = _isError
 
     private var userFavoriteDao: UserFavoriteDao?
-    private var userFavoriteDb: UserFavoriteRoomDatabase? = UserFavoriteRoomDatabase.getDatabase(application)
+    private var userFavoriteDb: UserFavoriteRoomDatabase? =
+        UserFavoriteRoomDatabase.getDatabase(application)
 
     private var userVisitedDao: UserVisitedDao?
-    private var userVisitedDb: UserVisitedRoomDatabase? = UserVisitedRoomDatabase.getDatabase(application)
+    private var userVisitedDb: UserVisitedRoomDatabase? =
+        UserVisitedRoomDatabase.getDatabase(application)
 
     init {
         userFavoriteDao = userFavoriteDb?.userDao()

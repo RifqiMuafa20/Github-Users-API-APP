@@ -20,9 +20,7 @@
     <string name="repositoris">Repositoris</string>
     <string name="save_favorite">Save Favorite?</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_favorite">Favorite</string>
-    <string name="delete_content">Delete Content?</string>
     <string name="delete_icon">Hapus</string>
     <string name="dark_mode">Dark Mode</string>
 </resources>

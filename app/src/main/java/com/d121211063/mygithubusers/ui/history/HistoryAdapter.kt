@@ -30,7 +30,8 @@ class HistoryAdapter : ListAdapter<UserVisited, HistoryAdapter.MyViewHolder>(DIF
         }
     }
 
-    class MyViewHolder(private val binding: ItemUsersBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder(private val binding: ItemUsersBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(userVisited: UserVisited) {
             binding.tvItemName.text = userVisited.login
             binding.userStatus.text = userVisited.type

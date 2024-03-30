@@ -1,14 +1,12 @@
 package com.d121211063.mygithubusers.ui.detail.follow
 
 import android.content.Intent
-import androidx.recyclerview.widget.ListAdapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.d121211063.mygithubusers.MainActivity
-import com.d121211063.mygithubusers.data.local.entity.UserVisited
 import com.d121211063.mygithubusers.data.remote.response.UserFollowersResponseItem
 import com.d121211063.mygithubusers.databinding.ItemFollowUserBinding
 import com.d121211063.mygithubusers.ui.detail.DetailUserActivity

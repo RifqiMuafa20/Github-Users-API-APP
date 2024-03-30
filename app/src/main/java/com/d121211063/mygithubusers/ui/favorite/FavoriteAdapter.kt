@@ -30,7 +30,8 @@ class FavoriteAdapter : ListAdapter<UserFavorite, FavoriteAdapter.MyViewHolder>(
         }
     }
 
-    class MyViewHolder(private val binding: ItemUsersBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder(private val binding: ItemUsersBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(user: UserFavorite) {
             binding.tvItemName.text = user.login
             binding.userStatus.text = user.type

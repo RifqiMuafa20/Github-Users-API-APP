@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity(tableName = "user_favorited")
-data class UserFavorite (
+data class UserFavorite(
     @PrimaryKey @ColumnInfo(name = "login") val login: String,
     @ColumnInfo(name = "avatar_url") val avatar_url: String,
     @ColumnInfo(name = "type") val type: String

@@ -16,7 +16,7 @@ interface UserFavoriteDao {
     fun getFavoritedUser(): LiveData<List<UserFavorite>>
 
     @Query("SELECT count(*) FROM user_favorited WHERE user_favorited.login = :login")
-    fun checkUser(login: String) : Int
+    fun checkUser(login: String): Int
 
     @Query("DELETE FROM user_favorited WHERE user_favorited.login = :login")
     fun removeFavorite(login: String)

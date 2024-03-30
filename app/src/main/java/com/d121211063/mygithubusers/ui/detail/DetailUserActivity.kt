@@ -123,6 +123,7 @@ class DetailUserActivity : AppCompatActivity() {
     }
 
     private fun showToastError(isError: Boolean) {
-        if (isError) Toast.makeText(this, "Terjadi kesalahan!! Mohon Bersabar", Toast.LENGTH_SHORT).show()
+        if (isError) Toast.makeText(this, "Terjadi kesalahan!! Mohon Bersabar", Toast.LENGTH_SHORT)
+            .show()
     }
 }

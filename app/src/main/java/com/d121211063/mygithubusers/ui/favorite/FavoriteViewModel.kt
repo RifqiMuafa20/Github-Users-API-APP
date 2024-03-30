@@ -9,7 +9,8 @@ import com.d121211063.mygithubusers.data.local.room.UserFavoriteRoomDatabase
 
 class FavoriteViewModel(application: Application) : AndroidViewModel(application) {
     private var userFavoritedDao: UserFavoriteDao? = null
-    private var userFavoritedDb: UserFavoriteRoomDatabase? = UserFavoriteRoomDatabase.getDatabase(application)
+    private var userFavoritedDb: UserFavoriteRoomDatabase? =
+        UserFavoriteRoomDatabase.getDatabase(application)
 
     init {
         userFavoritedDao = userFavoritedDb?.userDao()
