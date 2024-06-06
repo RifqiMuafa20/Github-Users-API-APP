@@ -97,6 +97,9 @@ class DetailUserActivity : AppCompatActivity() {
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
         supportActionBar?.elevation = 0f
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 
     private fun getUserDetail(detailUser: DetailUserResponse) {
@@ -116,6 +119,11 @@ class DetailUserActivity : AppCompatActivity() {
             follower.text = getString(R.string.follower, nfollower)
             following.text = getString(R.string.following, nfollowing)
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun showLoading(isLoading: Boolean) {

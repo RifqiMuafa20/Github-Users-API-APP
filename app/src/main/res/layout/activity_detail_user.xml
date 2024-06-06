@@ -23,8 +23,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 app:cardBackgroundColor="@android:color/transparent"
-                app:cardElevation="0dp"
                 app:cardCornerRadius="0dp"
+                app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -37,10 +37,9 @@
                         android:id="@+id/imageView"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-
                         android:layout_marginBottom="50dp"
                         android:scaleType="centerCrop"
-                        app:civ_border_color="@color/colorPrimary"
+                        app:civ_border_color="@color/grey"
                         app:civ_border_width="2dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +50,7 @@
                         android:id="@+id/locationImage"
                         android:layout_width="14dp"
                         android:layout_height="13dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="15dp"
                         android:contentDescription="@string/location"
                         app:layout_constraintStart_toStartOf="@+id/userName"
                         app:layout_constraintTop_toBottomOf="@+id/userName"
@@ -61,12 +60,10 @@
                         android:id="@+id/userName"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="sans-serif-medium"
+                        android:fontFamily="@font/poppins_regular"
                         android:maxLines="1"
                         android:text="@string/username"
                         android:textSize="12sp"
-                        android:textStyle="italic"
                         app:layout_constraintStart_toStartOf="@+id/namaLengkap"
                         app:layout_constraintTop_toBottomOf="@+id/namaLengkap" />
 
@@ -75,7 +72,7 @@
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:fontFamily="sans-serif-black"
+                        android:fontFamily="@font/poppins_regular"
                         android:maxLines="1"
                         android:text="@string/location"
                         android:textSize="9sp"
@@ -87,7 +84,7 @@
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:fontFamily="sans-serif-black"
+                        android:fontFamily="@font/poppins_regular"
                         android:maxLines="1"
                         android:text="@string/company"
                         android:textSize="9sp"
@@ -109,10 +106,10 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:fontFamily="sans-serif-medium"
+                        android:fontFamily="@font/poppins_medium"
                         android:maxLines="1"
                         android:text="@string/nama_lengkap"
-                        android:textSize="15sp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toEndOf="@+id/imageView"
                         app:layout_constraintTop_toTopOf="@+id/imageView" />
 
@@ -132,24 +129,22 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@color/grey"
-                            android:fontFamily="monospace"
+                            android:fontFamily="@font/poppins_regular"
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="@string/followers"
-                            android:textSize="12sp" />
+                            android:textSize="13sp" />
 
                         <TextView
                             android:id="@+id/following"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@color/grey"
-                            android:fontFamily="monospace"
+                            android:fontFamily="@font/poppins_regular"
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="@string/followi"
-                            android:textSize="12sp" />
+                            android:textSize="13sp" />
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -170,24 +165,12 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="450dp"
+                android:layout_height="430dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tabs"
                 app:layout_constraintVertical_bias="0.5" />
-
-            <ImageView
-                android:id="@+id/iv_favorite"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="60dp"
-                android:layout_marginBottom="80dp"
-                android:contentDescription="@string/save_favorite"
-                android:src="@drawable/baseline_favorite_24"
-                android:tag="Not Liked"
-                app:layout_constraintBottom_toBottomOf="@+id/view_pager"
-                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -200,6 +183,17 @@
             android:layout_marginTop="110dp"
             android:visibility="gone"
             tools:visibility="visible" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/iv_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            android:contentDescription="@string/save_favorite"
+            android:tag="Not Liked"
+            app:srcCompat="@drawable/baseline_favorite_24" />
 
     </FrameLayout>
 </ScrollView>

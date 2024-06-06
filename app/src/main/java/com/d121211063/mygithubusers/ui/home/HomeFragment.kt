@@ -55,18 +55,6 @@ class HomeFragment : Fragment() {
             showToastError(it)
         }
 
-        val pref = SettingPreferences.getInstance(requireActivity().application.dataStore)
-        val themeViewModel =
-            ViewModelProvider(this, ViewModelFactory(pref)).get(SettingViewModel::class.java)
-
-        themeViewModel.getThemeSettings().observe(viewLifecycleOwner) { isDarkModeActive: Boolean ->
-            if (isDarkModeActive) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
-        }
-
         searchUser()
 
         return root
