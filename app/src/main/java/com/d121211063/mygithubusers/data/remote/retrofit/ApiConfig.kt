@@ -8,19 +8,9 @@ import com.d121211063.mygithubusers.BuildConfig
 class ApiConfig {
     companion object {
         private const val baseUrl = BuildConfig.BASE_URL
-        private const val apiKey = BuildConfig.API_KEY
 
         fun getApiService(): ApiService {
-            val authInterceptor = Interceptor { chain ->
-                val req = chain.request()
-                val requestHeaders = req.newBuilder()
-                    .addHeader("Authorization", apiKey)
-                    .build()
-                chain.proceed(requestHeaders)
-            }
-
             val client = OkHttpClient.Builder()
-                .addInterceptor(authInterceptor)
                 .build()
             val retrofit = Retrofit.Builder()
                 .baseUrl(baseUrl)
