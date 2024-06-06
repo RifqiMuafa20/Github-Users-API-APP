@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import com.d121211063.mygithubusers.BuildConfig
 class ApiConfig {
     companion object {
-        private const val baseUrl = BuildConfig.BASE_URL
+        private const val baseUrl = "https://api.github.com/"
 
         fun getApiService(): ApiService {
             val client = OkHttpClient.Builder()
